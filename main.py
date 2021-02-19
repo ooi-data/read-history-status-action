@@ -8,10 +8,12 @@ def  main():
     status = 'n/a'
     if file_path:
         path = Path(file_path)
-        status_json = yaml.load(path.open(), Loader=yaml.SafeLoader)
-        status = status_json['status']
-    else:
-        print("file_path not found.")
+        if path.exists():
+            status_json = yaml.load(path.open(), Loader=yaml.SafeLoader)
+            status = status_json['status']
+        
+    if status == 'n/a':
+        print("path not found.")
     
     args = ["echo", "::set-output", f"name=status::{status}"]
     subprocess.call(args)
