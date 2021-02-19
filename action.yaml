@@ -1,14 +1,13 @@
-name: "GH Action.py"
-description: 'Github actions starter for python script with container.'
+name: "Read history status"
+description: 'Github action to read status key in yaml file.'
 author: "lsetiawan <https://github.com/lsetiawan>"
 inputs:
-  seconds:  # id of input
-    description: 'Number of seconds to  wait'
+  file_path:  # id of input
+    description: 'Path to yaml file'
     required: true
-    default: "10"
 outputs:
-  time: # id of output
-    description: 'The time the script finished.'
+  status: # id of output
+    description: 'Status string'
 runs:
   using: 'docker'
   image: 'Dockerfile'

@@ -1,26 +1,23 @@
-# py-github-actions-starter
+# read-history-status-action
 
-Github Actions Docker/Python Template
-
-This action waits for the specified time and prints out the time when run
-was finished.
+Github Actions To read status in yaml file.
 
 ## Inputs
 
-### `seconds`
+### `file_path`
 
-**Required** The time that action should wait.
+Path to yaml file relative to root.
 
 ## Outputs
 
-### `time`
+### `status`
 
-The time when run was finished.
+Status string found in file
 
 ## Example usage
 
 ```yaml
-uses: lsetiawan/py-github-actions-starter@v1
+uses: ooi-data/read-history-status-action@main
 with:
-  time: '5'
+  file_path: .ci-helpers/file-status.yaml
 ```

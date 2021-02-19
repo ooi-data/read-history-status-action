@@ -1,17 +1,17 @@
 import os
-import time
 import subprocess
-import datetime
+import yaml
+from pathlib import Path
 
 def  main():
-    wait_time = os.environ.get("INPUT_SECONDS", 10)
-    print(f"Waiting {wait_time} seconds ...")
-    time.sleep(int(wait_time))
-    print("Done.")
-
-    now = datetime.datetime.now()
-    args = ["echo", "::set-output", f"name=time::{now.isoformat()}"]
-    subprocess.call(args)
+    file_path = os.environ.get("INPUT_FILE_PATH")
+    if file_path:
+        path = Path(file_path)
+        status_json = yaml.load(path.open(), Loader=yaml.SafeLoader)
+        args = ["echo", "::set-output", f"name=status::{status_json['status']}"]
+        subprocess.call(args)
+    else:
+        print("file_path not found.")
 
 
 if __name__ == "__main__":
